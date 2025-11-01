@@ -16,10 +16,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  # note that prometheus needs this label
   name: backend-service
   labels:
-    app: backend
+  # note that prometheus needs this label to scrape the metrics
+    app: backend 
 spec:
   selector:
     app: backend
