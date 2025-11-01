@@ -11,10 +11,16 @@ spec:
   project: default
 
   # Source repository configuration
+  # Only sync resources from terraformdeployment directory
+  # ArgoCD will automatically track and prune resources it created from this path
   source:
     repoURL: https://github.com/aayush0325/kubernetes-basics.git
     targetRevision: main
     path: terraformdeployment
+    # Directory-based application - only resources in terraformdeployment are managed
+    directory:
+      recurse: true
+      include: "*.yaml,*.yml"
 
   # Destination cluster and namespace
   destination:
@@ -39,7 +45,7 @@ spec:
       - Validate=true
       # Use server-side apply for better conflict resolution
       - ServerSideApply=true
-      # Prune last to avoid dependency issues
+      # Prune last to avoid dependency issues (ensures resources are deleted after dependencies)
       - PruneLast=true
 
     # Retry policy for failed syncs

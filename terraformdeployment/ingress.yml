@@ -6,16 +6,10 @@ metadata:
     # Cert-Manager annotation to use the Let's Encrypt Production issuer
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     # External-DNS annotation to enable automatic DNS record creation
-    external-dns.alpha.kubernetes.io/hostname: "cloudgrafana.aayush0325.fun,cloudprometheus.aayush0325.fun,cloudbackend.aayush0325.fun,cloudfrontend.aayush0325.fun"
+    external-dns.alpha.kubernetes.io/hostname: "cloudbackend.aayush0325.fun,cloudfrontend.aayush0325.fun"
 spec:
   ingressClassName: nginx
   tls:
-  - hosts:
-    - cloudgrafana.aayush0325.fun
-    secretName: cloudgrafana-tls
-  - hosts:
-    - cloudprometheus.aayush0325.fun
-    secretName: cloudprometheus-tls
   - hosts:
     - cloudbackend.aayush0325.fun
     secretName: cloudbackend-tls
@@ -23,26 +17,6 @@ spec:
     - cloudfrontend.aayush0325.fun
     secretName: cloudfrontend-tls
   rules:
-  - host: cloudgrafana.aayush0325.fun
-    http: 
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: grafana-service
-            port:
-              number: 80
-  - host: cloudprometheus.aayush0325.fun
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: prometheus-service
-            port:
-              number: 80
   - host: cloudbackend.aayush0325.fun
     http:
       paths:
