@@ -5,6 +5,7 @@ metadata:
   namespace: default
   labels:
     app: backend
+    release: kube-prometheus-stack
 spec:
   selector:
     matchLabels:
