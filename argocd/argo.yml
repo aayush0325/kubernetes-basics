@@ -20,7 +20,7 @@ spec:
     # Directory-based application - only resources in terraformdeployment are managed
     directory:
       recurse: true
-      include: "*.yaml,*.yml"
+      include: "*.yml"
 
   # Destination cluster and namespace
   destination:
